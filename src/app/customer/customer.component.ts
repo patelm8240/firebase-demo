@@ -11,7 +11,7 @@ export class CustomerComponent implements OnInit {
   showSuccessMessage:boolean;
   formControls = this.customerService.form.controls;
 
-  constructor(private customerService : CustomerService) { }
+  constructor(public customerService : CustomerService) { }
 
   ngOnInit() {
   }
