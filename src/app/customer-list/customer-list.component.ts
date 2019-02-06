@@ -8,6 +8,8 @@ import { CustomerService } from '../shared/customer.service';
 export class CustomerListComponent implements OnInit {
   showDeletedMessage:boolean;
   customerArray = [];
+  searchText:string="";
+
   constructor(private customerService : CustomerService) { }
 
   ngOnInit() {
@@ -27,5 +29,21 @@ export class CustomerListComponent implements OnInit {
     this.showDeletedMessage=true;
     setTimeout(() => this.showDeletedMessage=false , 3000);
   }
+  filterCondition(customer){
+    if(customer.fullName.toLowerCase().indexOf(this.searchText.toLowerCase()) != -1){
+     return true;
+    }else if(customer.email.toLowerCase().indexOf(this.searchText.toLowerCase()) != -1){
+      return true;
+    }
+    else if(customer.mobile.toLowerCase().indexOf(this.searchText.toLowerCase()) != -1){
+      return true;
+    }
+    else if(customer.location.toLowerCase().indexOf(this.searchText.toLowerCase()) != -1){
+      return true;
+    }else{
+      return false;
+    }
 
+    
+  }
 }

@@ -1,3 +1,10 @@
+
+<form class="form-inline" style="margin:10px 0;">
+  <input type="text" class="form-control" name="searchInput" placeholder="Search" 
+    #searchInput="ngModel" [(ngModel)]="searchText" style="width:89%; max-width: 100%;">
+  <button class="btn btn-primary" (click)="searchText=''" style="margin-left:5px;">Clear</button>
+</form>
+
 <table class="table table-sm">
   <thead>
     <th>Full Name</th>
@@ -7,7 +14,7 @@
     <th></th>
   </thead>
   <ng-container *ngFor="let customer of customerArray">
-    <tr class="table-light">
+    <tr class="table-light" *ngIf="filterCondition(customer)">
       <td>{{ customer.fullName }}</td>
       <td>{{ customer.email }}</td>
       <td>{{ customer.mobile }}</td>
