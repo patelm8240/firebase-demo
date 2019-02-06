@@ -6,11 +6,26 @@ import { CustomerService } from '../shared/customer.service';
   styleUrls: ['./customer-list.component.css']
 })
 export class CustomerListComponent implements OnInit {
-
+  showDeletedMessage:boolean;
+  customerArray = [];
   constructor(private customerService : CustomerService) { }
 
   ngOnInit() {
-    this.customerService.getCustomer();
+    this.customerService.getCustomer().subscribe(list => {
+      this.customerArray = list.map(item => {
+        return {
+          $key: item.key,
+          ...item.payload.val()
+        }
+      })
+    });
+  }
+  onDelete($key){
+    if(confirm("Are you sure you want to delete this record?")){
+      this.customerService.deleteCustomer($key);
+    }
+    this.showDeletedMessage=true;
+    setTimeout(() => this.showDeletedMessage=false , 3000);
   }
 
 }
