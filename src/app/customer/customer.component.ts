@@ -15,7 +15,7 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
   onSubmit(){
     this.submitted=true;
     if(this.customerService.form.valid){

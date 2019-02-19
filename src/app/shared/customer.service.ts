@@ -6,7 +6,7 @@ import { AngularFireDatabase , AngularFireList } from 'angularfire2/database';
 })
 export class CustomerService {
   customerList: AngularFireList<any>;
-
+  btnName:string='';
   constructor(private firebase : AngularFireDatabase) { }
 
   form = new FormGroup({
@@ -28,6 +28,7 @@ export class CustomerService {
       mobile: customer.mobile,
       location: customer.location
     });
+    this.btnName="";
   }
   populateForm(customer){
     this.form.setValue(customer);
